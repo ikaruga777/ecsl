@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "ecsl/version"
+require "ecsl/version"
+require "ecsl/exec"
 
 module Ecsl
   class Error < StandardError; end
