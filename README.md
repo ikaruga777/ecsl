@@ -1,43 +1,66 @@
-# Ecsl
+# ECSL (ECS Login)
 
-TODO: Delete this and the text below, and describe your gem
+A tool to generate commands for logging into ECS containers.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ecsl`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Features
 
-## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
+- Interactive selection of clusters, services, tasks, and containers
+- Command generation for container login
+- Incremental search for quick selection
+- Efficient resource retrieval using AWS SDK
 
 ## Usage
 
-TODO: Write usage instructions here
+```bash
+ecsl -p your-profile [-f filter] [-r region]
+```
 
-## Development
+### Options
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+- `-p, --profile PROFILE`: AWS profile name
+- `-f, --filter FILTER`: Cluster name filter
+- `-r, --region REGION`: AWS region
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### Examples
 
-## Contributing
+```bash
+# Basic usage
+ecsl -p my-profile
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ecsl. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/ecsl/blob/main/CODE_OF_CONDUCT.md).
+# Filter by cluster name
+ecsl -p my-profile -f production
+
+# Specify region
+ecsl -p my-profile -r us-west-2
+```
+
+## Workflow
+
+1. Cluster Selection
+   - Shows only clusters containing the filter string if specified
+   - Auto-selects if only one cluster exists
+
+2. Service Selection
+   - Select from services in the chosen cluster
+   - Auto-selects if only one service exists
+
+3. Task Selection
+   - Select from tasks in the chosen service
+   - Auto-selects if only one task exists
+
+4. Container Selection
+   - Select from containers in the chosen task
+   - Auto-selects if only one container exists
+
+5. Command Generation
+   - Displays the command to execute for the selected cluster, task, and container
+
+## Notes
+
+- This tool only generates commands and does not execute them
+- Copy and execute the generated command manually
+- AWS credentials must be configured in advance
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Ecsl project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/ecsl/blob/main/CODE_OF_CONDUCT.md).
+MIT
