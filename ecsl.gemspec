@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "aws-sdk-ecs"
-  spec.add_dependency "tty-prompt"
   spec.add_dependency "json"
   spec.add_dependency "open3"
+  spec.add_dependency "tty-prompt"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 13.0"
