@@ -19,6 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
+
+  spec.required_ruby_version = ">= 3.1"
   spec.add_dependency "aws-sdk-ecs"
   spec.add_dependency "json"
   spec.add_dependency "open3"
