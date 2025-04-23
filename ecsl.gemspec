@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "ECS Exec helper library"
   spec.description   = "A helper library for ECS Exec command"
-  spec.homepage      = "https://github.com/ikaruga777/ecsl"
+  spec.homepage      = "https://github.com/pepabo/ecsl"
   spec.license       = "MIT"
 
   spec.files         = Dir.glob("lib/**/*.rb") + Dir.glob("exe/**/*")
